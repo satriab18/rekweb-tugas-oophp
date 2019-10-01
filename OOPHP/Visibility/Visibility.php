@@ -5,7 +5,7 @@ class Produk {
             $penulis,
             $penerbit;
 
-    protected $harga;
+    private $harga;
 
 
     public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0){
@@ -23,6 +23,10 @@ class Produk {
                 $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
                 return $str;
         }
+
+        public function getHarga(){
+                return $this->harga;   
+           }
 }
 
 class Komik extends Produk {
@@ -54,10 +58,6 @@ class Game extends Produk {
                 $str = "Game : " . parent::getInfoProduk() . " - {$this->waktuMain} Jam";
                 return $str;
         }
-
-        public function getHarga(){
-                return $this->harga;   
-           }
 }
 
 class CetakInfoProduk {
