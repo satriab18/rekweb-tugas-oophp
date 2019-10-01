@@ -3,8 +3,9 @@
 class Produk {
     public $judul,
             $penulis,
-            $penerbit,
-            $harga;
+            $penerbit;
+
+    protected $harga;
 
 
     public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0){
@@ -22,7 +23,6 @@ class Produk {
                 $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
                 return $str;
         }
-
 }
 
 class Komik extends Produk {
@@ -54,6 +54,10 @@ class Game extends Produk {
                 $str = "Game : " . parent::getInfoProduk() . " - {$this->waktuMain} Jam";
                 return $str;
         }
+
+        public function getHarga(){
+                return $this->harga;   
+           }
 }
 
 class CetakInfoProduk {
@@ -69,4 +73,7 @@ $produk2 = new Game("Uncharted", "Neil Druckmann", "Sony Computer", 250000, 50, 
 echo $produk1->getInfoProduk();
 echo "<br>";
 echo $produk2->getInfoProduk();
+echo "<hr>";
+
+echo $produk2->getHarga();
 ?>
