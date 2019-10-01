@@ -3,7 +3,8 @@
 class Produk {
     public $judul,
             $penulis,
-            $penerbit;
+            $penerbit,
+            $diskon = 0;
 
     private $harga;
 
@@ -25,8 +26,12 @@ class Produk {
         }
 
         public function getHarga(){
-                return $this->harga;   
+                return $this->harga - ($this->harga * $this->diskon / 100);   
            }
+
+        public function setDiskon($diskon){
+                $this->diskon = $diskon;
+        }
 }
 
 class Komik extends Produk {
@@ -75,5 +80,6 @@ echo "<br>";
 echo $produk2->getInfoProduk();
 echo "<hr>";
 
+$produk2->setDiskon(50);
 echo $produk2->getHarga();
 ?>
