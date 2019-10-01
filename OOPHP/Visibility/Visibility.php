@@ -3,8 +3,9 @@
 class Produk {
     public $judul,
             $penulis,
-            $penerbit,
-            $diskon = 0;
+            $penerbit;
+
+    protected $diskon = 0;
 
     private $harga;
 
@@ -28,10 +29,6 @@ class Produk {
         public function getHarga(){
                 return $this->harga - ($this->harga * $this->diskon / 100);   
            }
-
-        public function setDiskon($diskon){
-                $this->diskon = $diskon;
-        }
 }
 
 class Komik extends Produk {
@@ -62,6 +59,10 @@ class Game extends Produk {
         public function getInfoProduk(){
                 $str = "Game : " . parent::getInfoProduk() . " - {$this->waktuMain} Jam";
                 return $str;
+        }
+        
+        public function setDiskon($diskon){
+                $this->diskon = $diskon;
         }
 }
 
