@@ -8,12 +8,12 @@
 // const UMUR = 20;
 // echo UMUR;
 
-class Coba {
-    const NAMA = 'Satria Bagus';
-}
+// class Coba {
+//     const NAMA = 'Satria Bagus';
+// }
 
-echo Coba::NAMA;
-echo "<br>";
+// echo Coba::NAMA;
+// echo "<br>";
 
 // Magic Constant
 
@@ -23,10 +23,11 @@ echo __FILE__;
 
 echo "<br>";
 
-class coba() {
+class coba{
     public $kelas = __CLASS__;
 }
-$obj = new Coba;
-echo coba();
+
+$obj = new coba;
+echo $obj->kelas;
 
 ?>
