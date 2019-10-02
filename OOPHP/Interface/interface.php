@@ -1,7 +1,11 @@
 <?php 
 
+interface InfoProduk {
+     public function getInfoProduk();
+}
+
 abstract class Produk {
-    private $judul,
+    protected $judul,
             $penulis,
             $penerbit,
             $harga;
@@ -53,25 +57,20 @@ abstract class Produk {
     public function getLabel(){
                 return "$this->penulis, $this->penerbit";
         }
-
-    abstract public function getInfoProduk();
     
-        public function getInfo(){
-                $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
-                return $str;
-        }
+    abstract public function getInfo();
         
-        public function setDiskon($diskon){
+    public function setDiskon($diskon){
                 $this->diskon = $diskon;
         }
 
-        public function getDiskon(){
+    public function getDiskon(){
                return $this->diskon;
         }
 
 }
 
-class Komik extends Produk {
+class Komik extends Produk implements InfoProduk{
         public $jmlHalaman;
 
         public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman = 0) {
@@ -81,13 +80,18 @@ class Komik extends Produk {
                 $this->jmlHalaman = $jmlHalaman;
         }
 
+        public function getInfo(){
+            $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
+            return $str;
+    }
+
         public function getInfoProduk(){
                 $str = "Komik : " . $this->getInfo() . " - {$this->jmlHalaman} Halaman";
                 return $str;
         }
 }
 
-class Game extends Produk {
+class Game extends Produk implements InfoProduk{
         public $waktuMain;
         
         public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $waktuMain = 0){
@@ -96,6 +100,12 @@ class Game extends Produk {
         
                 $this->waktuMain = $waktuMain;
         }
+
+        public function getInfo(){
+            $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
+            return $str;
+        }
+
         public function getInfoProduk(){
                 $str = "Game : " . $this->getInfo() . " - {$this->waktuMain} Jam";
                 return $str;
@@ -126,4 +136,8 @@ $cetakProduk = new CetakInfoProduk();
 $cetakProduk->tambahProduk($produk1);
 $cetakProduk->tambahProduk($produk2);
 echo $cetakProduk->cetak();
+
+
+
+
 ?>
