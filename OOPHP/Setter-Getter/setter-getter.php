@@ -1,7 +1,7 @@
 <?php 
 
 class Produk {
-    public $judul,
+    private $judul,
             $penulis,
             $penerbit;
 
@@ -15,6 +15,17 @@ class Produk {
         $this->penulis = $penulis;
         $this->penerbit = $penerbit;
         $this->harga = $harga;
+    }
+
+    public function setJudul( $judul){
+            if (!is_string($judul) ){
+                throw new Exception("Judul Harus String");
+            }
+            $this->judul = $judul;
+    }
+
+    public function getJudul(){
+            return $this->judul;
     }
 
     public function getLabel(){
@@ -83,4 +94,10 @@ echo "<hr>";
 
 $produk2->setDiskon(50);
 echo $produk2->getHarga();
+
+echo "<hr>";
+
+$produk1->setJudul("JudulBaru");
+echo $produk1->getJudul();
+
 ?>
