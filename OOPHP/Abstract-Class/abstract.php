@@ -54,7 +54,9 @@ abstract class Produk {
                 return "$this->penulis, $this->penerbit";
         }
 
-    public function getInfoProduk(){
+    abstract public function getInfoProduk();
+    
+        public function getInfo(){
                 $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
                 return $str;
         }
@@ -80,7 +82,7 @@ class Komik extends Produk {
         }
 
         public function getInfoProduk(){
-                $str = "Komik : " . parent::getInfoProduk() . " - {$this->jmlHalaman} Halaman";
+                $str = "Komik : " . $this->getInfo() . " - {$this->jmlHalaman} Halaman";
                 return $str;
         }
 }
@@ -95,7 +97,7 @@ class Game extends Produk {
                 $this->waktuMain = $waktuMain;
         }
         public function getInfoProduk(){
-                $str = "Game : " . parent::getInfoProduk() . " - {$this->waktuMain} Jam";
+                $str = "Game : " . $this->getInfo() . " - {$this->waktuMain} Jam";
                 return $str;
         }
 
@@ -117,11 +119,11 @@ class CetakInfoProduk {
         }
 }
 
-// $produk1 = new Komik("Naruto", "Masashi Kishimotor", "Shonen Jump", 30000, 100, "Komik");
-// $produk2 = new Game("Uncharted", "Neil Druckmann", "Sony Computer", 250000, 50, "Game");
+$produk1 = new Komik("Naruto", "Masashi Kishimotor", "Shonen Jump", 30000, 100, "Komik");
+$produk2 = new Game("Uncharted", "Neil Druckmann", "Sony Computer", 250000, 50, "Game");
 
-// $cetakProduk = new CetakInfoProduk();
-// $cetakProduk->tambahProduk($produk1);
-// $cetakProduk->tambahProduk($produk2);
-// echo $cetakProduk->cetak();
+$cetakProduk = new CetakInfoProduk();
+$cetakProduk->tambahProduk($produk1);
+$cetakProduk->tambahProduk($produk2);
+echo $cetakProduk->cetak();
 ?>
