@@ -13,7 +13,19 @@ class Coba {
 }
 
 echo Coba::NAMA;
+echo "<br>";
 
+// Magic Constant
+
+echo __LINE__;
+echo "<br>";
+echo __FILE__;
+
+function coba() {
+    return __FUNCTION__;
+}
+echo "<br>";
+echo coba();
 
 
 ?>
